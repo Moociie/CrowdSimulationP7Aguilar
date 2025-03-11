@@ -2,30 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropCylinder : MonoBehaviour {
+public class DropCylinder : MonoBehaviour 
+{
 
     public GameObject obstacle;
     GameObject[] agents;
 
-    void Start() {
+    void Start() 
+    {
 
         agents = GameObject.FindGameObjectsWithTag("agent");
     }
 
 
-    void Update() {
+    void Update() 
+    {
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0)) 
+        {
 
             RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo)) {
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo)) 
+            {
 
                 Instantiate(obstacle, hitInfo.point, obstacle.transform.rotation);
-                foreach (GameObject a in agents) {
+                foreach (GameObject a in agents) 
+                {
 
-                    a.GetComponent<AIControl>().DetectNewObstacle(hitInfo.point);
+                    a.GetComponent<AIControl2>().DetectNewObstacle(hitInfo.point);
                 }
             }
         }
